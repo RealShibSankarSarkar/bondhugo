@@ -9,9 +9,9 @@
   <meta property="og:description" content="BondhuGo — A human-first social app to connect with friends and communities." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b69ff" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
+  <link rel="icon" href="assets/logo.png">
   <style>
-    :root{
+    :root {
       --bg:#0f172a;
       --card:#ffffff;
       --accent:#0b69ff;
@@ -19,46 +19,70 @@
       --container:1100px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body {
       background: linear-gradient(180deg,#f7f8fa 0%, #eef2ff 100%);
       color:#0f172a;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+      -webkit-font-smoothing:antialiased;
     }
-    .wrap{max-width:var(--container);margin:0 auto;padding:28px;}
-    header{display:flex;align-items:center;justify-content:space-between;padding:6px 0;}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
-    .logo{
-      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6c9cff);
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 20px rgba(11,105,255,0.18);
-      font-size:20px;
-    }
-    nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:600}
-    .hero{
-      display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:28px;
-    }
-    .hero .kicker{display:inline-block;background:#eef2ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:14px}
-    h1{font-size:2.1rem;margin:0 0 12px}
-    p.lead{color:#334155;margin:0 0 20px;font-size:1rem}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer;text-decoration:none;
+    .wrap {max-width:var(--container);margin:0 auto;padding:28px;}
+    header {display:flex;align-items:center;justify-content:space-between;padding:6px 0;}
+    .brand {display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
+    .logo img {width:44px;height:44px;border-radius:10px;object-fit:cover;}
+    nav a {margin-left:18px;text-decoration:none;color:var(--muted);font-weight:600;}
+    nav a:hover {color:var(--accent);}
+    .hero {display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:28px;}
+    .hero .kicker {display:inline-block;background:#eef2ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:14px;}
+    h1 {font-size:2.1rem;margin:0 0 12px;}
+    p.lead {color:#334155;margin:0 0 20px;font-size:1rem;}
+    .cta-row {display:flex;gap:12px;flex-wrap:wrap;}
+    .btn {
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;font-weight:700;
+      border:none;cursor:pointer;text-decoration:none;
       box-shadow:0 6px 18px rgba(15,23,42,0.06);
+      transition: all 0.2s ease;
     }
-    .btn-primary{background:var(--accent);color:white}
-    .btn-ghost{background:transparent;border:2px solid rgba(15,23,42,0.06);color:#0f172a}
-    .device-card{
-      background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(16,24,40,0.06);
+    .btn:hover {transform:translateY(-2px);}
+    .btn-primary {background:var(--accent);color:white;}
+    .btn-ghost {background:transparent;border:2px solid rgba(15,23,42,0.06);color:#0f172a;}
+    .device-card {
+      background:var(--card);padding:18px;border-radius:14px;
+      box-shadow:0 8px 30px rgba(16,24,40,0.06);
     }
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-    .feature{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;border:1px solid rgba(15,23,42,0.03)}
-    .feature h4{margin:8px 0 6px}
-    .footer{margin-top:38px;padding:18px;border-radius:12px;background:transparent;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-    .small{font-size:0.92rem;color:var(--muted)}
-    .links a{margin-left:12px;color:var(--muted);text-decoration:none;font-weight:600}
+    .screenshots {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .screenshots img {
+      width:100%;
+      border-radius:12px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .screenshots img:hover {
+      transform:scale(1.04);
+      box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    }
+    .features {
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:16px;margin-top:28px;
+    }
+    .feature {
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      padding:18px;border-radius:12px;
+      border:1px solid rgba(15,23,42,0.03);
+    }
+    .feature h4 {margin:8px 0 6px;}
+    .footer {
+      margin-top:38px;padding:18px;border-radius:12px;background:transparent;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+    }
+    .small {font-size:0.92rem;color:var(--muted);}
+    .links a {margin-left:12px;color:var(--muted);text-decoration:none;font-weight:600;}
+    .links a:hover {color:var(--accent);}
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .features{grid-template-columns:repeat(2,1fr)}
@@ -74,7 +98,7 @@
   <div class="wrap">
     <header>
       <a class="brand" href="#">
-        <div class="logo">BG</div>
+        <div class="logo"><img src="assets/logo.png" alt="BondhuGo logo"></div>
         <div>
           <div style="font-weight:800">BondhuGo</div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px">Human-first social</div>
@@ -95,90 +119,52 @@
         <h1>Find, share, and belong — Bond with your people.</h1>
         <p class="lead">BondhuGo helps you connect with friends and communities that share your passions. Lightweight, private-first, and built with care.</p>
 
-        <div class="cta-row" style="margin-bottom:18px">
-          <!-- ✅ Direct Download Link Added -->
-          <a class="btn btn-primary" 
-             href="https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk"
-             download
-             aria-label="Download APK">
-            ⤓ Download APK
-          </a>
-          <a class="btn btn-ghost" href="#" aria-label="Open on Play Store">
-            ▶ Play Store
-          </a>
-          <a class="btn" href="privacy-policy.html" style="border:1px solid rgba(11,105,255,0.12);">
-            📜 Privacy Policy
-          </a>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk" download>⤓ Download APK</a>
+          <a class="btn btn-ghost" href="https://indusapp.store/pu5du5h7">▶ Indus Appstore</a>
+          <a class="btn" href="privacy-policy.html" style="border:1px solid rgba(11,105,255,0.12);">📜 Privacy Policy</a>
         </div>
 
-        <div style="display:flex;gap:16px;flex-wrap:wrap">
-          <div class="small">Trusted by early users — private by design.</div>
-        </div>
+        <div style="margin-top:18px;" class="small">Trusted by early users — private by design.</div>
       </section>
 
-      <aside class="device-card" id="screens" aria-label="App preview">
+      <aside class="device-card" id="screens">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
           <strong>App preview</strong>
           <small style="color:var(--muted)">Beta</small>
         </div>
 
-        <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:84px;height:170px;border-radius:18px;background:linear-gradient(180deg,#0b69ff,#6c9cff);box-shadow:0 8px 30px rgba(11,105,255,0.16);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">
-            <div style="text-align:center;font-size:14px">BondhuGo<br/>App</div>
-          </div>
-
-          <div style="flex:1">
-            <p style="margin:0 0 8px;color:#0f172a;font-weight:700">Quick tour</p>
-            <ul style="margin:0;padding-left:18px;color:var(--muted)">
-              <li>Personalized content feed</li>
-              <li>Private profiles & secure posts</li>
-              <li>Fast search & topic groups</li>
-            </ul>
-          </div>
+        <div class="screenshots">
+          <img src="assets/screen1.jpg" alt="Screen 1">
+          <img src="assets/screen2.jpg" alt="Screen 2">
+          <img src="assets/screen3.jpg" alt="Screen 3">
+          <img src="assets/screen4.jpg" alt="Screen 4">
+          <img src="assets/screen5.jpg" alt="Screen 5">
+          <img src="assets/screen6.jpg" alt="Screen 6">
+          <img src="assets/screen7.jpg" alt="Screen 7">
+          <img src="assets/screen8.jpg" alt="Screen 8">
+          <img src="assets/screen9.jpg" alt="Screen 9">
+          <img src="assets/screen10.jpg" alt="Screen 10">
         </div>
       </aside>
-
     </main>
 
     <section id="features" style="margin-top:26px">
       <h3 style="margin:0 0 12px">Features</h3>
       <div class="features">
-        <div class="feature">
-          <div style="font-size:20px">🔒 Privacy-first</div>
-          <h4>Control your data</h4>
-          <p class="small">Only you can edit/delete your profile and posts. We store data securely on Google Cloud Firestore.</p>
-        </div>
-
-        <div class="feature">
-          <div style="font-size:20px">⚡ Fast & Lightweight</div>
-          <h4>Built for speed</h4>
-          <p class="small">Optimized for mobile with low resource usage and fast load times.</p>
-        </div>
-
-        <div class="feature">
-          <div style="font-size:20px">🤝 Communities</div>
-          <h4>Join topics you love</h4>
-          <p class="small">Create or join groups, follow interests, and discover relevant posts.</p>
-        </div>
-
-        <div class="feature">
-          <div style="font-size:20px">🔐 Secure Sign-in</div>
-          <h4>Google Sign-In</h4>
-          <p class="small">Optional Google authentication to simplify onboarding.</p>
-        </div>
-
-        <div class="feature">
-          <div style="font-size:20px">🛠 Developer Friendly</div>
-          <h4>Open setup</h4>
-          <p class="small">Easily configure Firestore and rules; designed for small teams and students.</p>
-        </div>
-
-        <div class="feature">
-          <div style="font-size:20px">📣 Notifications</div>
-          <h4>Engage with friends</h4>
-          <p class="small">Real-time updates for mentions, replies, and new posts.</p>
-        </div>
+        <div class="feature"><div style="font-size:20px">🔒 Privacy-first</div><h4>Control your data</h4><p class="small">Only you can edit/delete your profile and posts.</p></div>
+        <div class="feature"><div style="font-size:20px">⚡ Fast & Lightweight</div><h4>Built for speed</h4><p class="small">Optimized for mobile with fast load times.</p></div>
+        <div class="feature"><div style="font-size:20px">🤝 Communities</div><h4>Join topics you love</h4><p class="small">Follow interests and discover new friends.</p></div>
+        <div class="feature"><div style="font-size:20px">🔐 Secure Sign-in</div><h4>Google Sign-In</h4><p class="small">Simple, safe authentication option.</p></div>
+        <div class="feature"><div style="font-size:20px">🛠 Developer Friendly</div><h4>Open setup</h4><p class="small">Firestore rules are easy to customize.</p></div>
+        <div class="feature"><div style="font-size:20px">📣 Notifications</div><h4>Engage with friends</h4><p class="small">Get notified about replies and mentions.</p></div>
       </div>
+    </section>
+
+    <section id="qr" style="margin-top:40px;text-align:center;">
+      <h3>Scan & Download</h3>
+      <p class="small">Scan this QR to download BondhuGo instantly</p>
+      <img src="assets/qr.png" alt="BondhuGo QR Code" style="width:140px;height:140px;margin-top:12px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
     </section>
 
     <section id="contact" style="margin-top:30px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -190,9 +176,13 @@
 
       <div style="text-align:right">
         <p class="small" style="margin:0">Available on</p>
-        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
-          <a class="btn btn-ghost" href="#" aria-label="Play Store link">Play Store</a>
-          <a class="btn btn-ghost" href="https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk" download aria-label="App Gallery link">APK</a>
+        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
+          <a href="https://indusapp.store/pu5du5h7">
+            <img alt="Get it on Indus Appstore" src="https://docstore.indusappstore.com/public/external/developerdashboard-static/badge-black-background-english.png" style="height:42px;">
+          </a>
+          <a href="https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk" download>
+            <img src="assets/download-apk-badge.png" alt="Download APK" style="height:42px;">
+          </a>
         </div>
       </div>
     </section>
