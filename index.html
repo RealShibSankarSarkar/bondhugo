@@ -8,190 +8,197 @@
   <meta name="theme-color" content="#0b69ff" />
 
   <style>
-    /* ---------- THEME COLORS ---------- */
+    /* ---------- THEME & BASE ---------- */
     :root{
-      --accent: #0b69ff; /* primary (blue) */
-      --bg: #fafbfd;
-      --card: #ffffff;
-      --muted: #6b7280;
-      --text: #0f172a;
-      --glass: rgba(255,255,255,0.7);
-      --radius: 16px;
-      --shadow-sm: 0 6px 18px rgba(16,24,40,0.06);
-      --shadow-lg: 0 12px 40px rgba(2,6,23,0.14);
-      --maxw: 980px;
+      --accent:#0b69ff;   /* primary blue */
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --text:#0b1727;
+      --radius:16px;
+      --shadow-sm: 0 8px 24px rgba(15,23,42,0.06);
+      --shadow-lg: 0 18px 48px rgba(2,6,23,0.12);
+      --maxw:980px;
       font-family: "Google Sans", "Inter", "Roboto", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
+    /* Dark mode (keeps look consistent on phones that prefer dark) */
+    @media (prefers-color-scheme: dark){
       :root{
-        --bg: linear-gradient(180deg,#071028,#021223);
-        --card: rgba(10,14,20,0.55);
-        --glass: rgba(255,255,255,0.03);
-        --text: #e6eef9;
+        --bg: #061323;
+        --card: rgba(8,12,18,0.6);
         --muted: #9aa6bf;
-        --shadow-sm: 0 6px 24px rgba(2,6,23,0.6);
+        --text: #e8f0ff;
+        --shadow-sm: 0 8px 24px rgba(0,0,0,0.6);
         --shadow-lg: 0 18px 48px rgba(0,0,0,0.6);
       }
       body { background: var(--bg); color: var(--text); }
     }
 
-    html,body{height:100%;margin:0;padding:0;}
-    body{
-      background: var(--bg);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      color:var(--text);
-      display:flex;
-      justify-content:center;
-      padding:20px;
-    }
+    html,body{height:100%;margin:0;padding:0;background:var(--bg);color:var(--text)}
+    .wrap{max-width:var(--maxw);margin:18px auto;padding:0 16px;}
+    a{color:inherit;text-decoration:none}
 
-    .page {
-      width:100%;
-      max-width:var(--maxw);
-    }
-
-    header.app-header{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      padding:14px 18px;
+    /* ---------- HEADER (Play-like card) ---------- */
+    .app-card{
       background:var(--card);
-      border-radius:12px;
+      border-radius:18px;
+      padding:18px;
       box-shadow:var(--shadow-sm);
-      position:sticky;
-      top:12px;
-      z-index:40;
-      backdrop-filter: blur(8px);
+      display:flex;
+      gap:16px;
+      align-items:center;
+      position:relative;
+      overflow:visible;
     }
     .app-icon{
-      width:72px;height:72px;border-radius:16px;overflow:hidden;flex:0 0 72px;
+      width:80px;height:80px;border-radius:20px;flex:0 0 80px;overflow:hidden;
       box-shadow:var(--shadow-lg);
+      background:linear-gradient(135deg,#fff,#f3f7ff);
     }
-    .app-icon img{width:100%;height:100%;object-fit:cover;display:block;}
+    .app-icon img{width:100%;height:100%;object-fit:cover;display:block}
 
-    .meta {
-      flex:1;
-      min-width:0;
+    .meta{
+      flex:1;min-width:0;
     }
-    .app-title{font-size:1.25rem;font-weight:700;margin:0;letter-spacing:0.1px}
-    .app-sub{margin-top:6px;color:var(--muted);font-size:0.92rem}
-    .rating-row{display:flex;align-items:center;gap:8px;margin-top:8px}
-    .stars{color:var(--accent);font-weight:700;letter-spacing:0.6px}
-    .install-col{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .app-title{font-size:1.35rem;font-weight:700;margin:0}
+    .app-sub{color:var(--muted);margin-top:6px;font-size:0.95rem}
+    .meta-row{display:flex;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap}
+    .badge-pill{background:rgba(11,105,255,0.08);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.88rem}
+
+    /* rating & micro info */
+    .rating{display:flex;align-items:center;gap:10px;margin-top:8px}
+    .stars{color:var(--accent);font-weight:800;font-size:1rem}
+    .micro{color:var(--muted);font-size:0.9rem;display:flex;gap:14px;align-items:center}
+
+    /* install column */
+    .install-col{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
     .install-btn{
-      background:linear-gradient(180deg,var(--accent), #0680ff);
-      color:white;padding:10px 16px;border-radius:12px;border:none;font-weight:700;
-      cursor:pointer;box-shadow:0 8px 24px rgba(11,105,255,0.28);
+      background:linear-gradient(180deg,var(--accent),#0680ff);
+      color:white;padding:10px 18px;border-radius:12px;border:none;font-weight:800;
+      cursor:pointer;box-shadow:0 10px 30px rgba(11,105,255,0.22);
+      transition:transform .12s ease,box-shadow .12s ease;
     }
-    .install-btn:active{transform:translateY(1px);}
+    .install-btn:active{transform:translateY(1px)}
+    .install-small{font-size:0.82rem;color:var(--muted)}
 
-    /* short meta row (category + size + installs style) */
-    .micro{
-      display:flex;gap:12px;color:var(--muted);font-size:0.88rem;margin-top:6px;
-    }
-
-    /* screenshots carousel */
+    /* ---------- CAROUSEL (screenshots) ---------- */
     .carousel-wrap{
       margin-top:18px;
-      background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.95));
-      border-radius:20px;padding:16px;border:1px solid rgba(0,0,0,0.03);
+      border-radius:20px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0.98));
       box-shadow:var(--shadow-sm);
       overflow:hidden;
     }
     .carousel{
-      display:flex;gap:14px;overflow-x:auto;padding:6px 6px 14px 6px;scroll-snap-type:x mandatory;
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      padding-bottom:12px;
+      scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling:touch;
     }
     .carousel img{
-      height:460px;border-radius:22px;flex-shrink:0;scroll-snap-align:start;object-fit:cover;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.08);transition:transform .22s ease;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    .carousel img:active,.carousel img:hover{ transform:scale(1.02); }
-
-    /* sections */
-    .sections{margin-top:18px;display:grid;gap:16px}
-    section.card{
-      background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow-sm);
+      height:470px;
+      border-radius:22px;
+      flex-shrink:0;
+      scroll-snap-align:start;
+      object-fit:cover;
+      box-shadow:0 14px 36px rgba(2,6,23,0.06);
+      transition:transform .18s ease;
       border:1px solid rgba(0,0,0,0.03);
     }
-    h2{margin:0 0 8px 0;font-size:1.05rem}
-    p{margin:0;color:var(--muted);line-height:1.6}
+    .carousel img:hover{transform:scale(1.02)}
+    @media(max-width:720px){ .carousel img{height:400px} }
+    @media(max-width:420px){ .carousel img{height:320px;border-radius:18px} }
 
-    details{background:transparent;border-radius:10px;padding:10px}
-    details summary{font-weight:700;cursor:pointer;outline:none}
-    details p{margin-top:8px;color:var(--muted)}
+    /* ---------- SECTIONS (About, What's new, Data safety) ---------- */
+    .sections{display:grid;gap:14px;margin-top:18px}
+    section.card{
+      background:var(--card);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow-sm);
+      border:1px solid rgba(0,0,0,0.03);
+    }
+    section.card h2{margin:0 0 8px 0;font-size:1.05rem}
+    section.card p{margin:0;color:var(--muted);line-height:1.6}
 
-    /* horizontal badge + qr row */
+    details{background:transparent;margin-top:8px}
+    details summary{font-weight:700;cursor:pointer;color:var(--text)}
+
+    /* ---------- BADGE + QR ROW ---------- */
     .badge-qr{
-      display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:10px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      margin-top:12px;
+      flex-wrap:wrap;
     }
     .badge-qr img.badge{
-      height:56px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.08);background:#000;padding:6px;
+      height:56px;border-radius:10px;box-shadow:0 8px 26px rgba(2,6,23,0.08);
+      background:#000;padding:8px;
     }
-    .badge-qr img.qr{width:140px;height:140px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06);background:white;padding:8px}
+    .badge-qr img.qr{
+      width:140px;height:140px;border-radius:14px;box-shadow:0 8px 24px rgba(2,6,23,0.06);
+      background:white;padding:8px;
+    }
 
     /* footer */
-    footer{
-      margin-top:18px;text-align:center;color:var(--muted);font-size:0.92rem;padding:18px;
-    }
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.9rem;padding-bottom:30px}
 
-    /* responsiveness */
-    @media (max-width:880px){
-      .carousel img{height:360px}
-      .app-header{padding:12px}
-    }
-    @media (max-width:520px){
-      .carousel img{height:300px}
-      .app-icon{width:56px;height:56px}
-      .install-col{align-items:flex-end}
-      header.app-header{gap:12px;padding:12px}
-    }
-
-    /* subtle reveal animation when element in view */
-    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
+    /* reveal animations */
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
     .reveal.visible{opacity:1;transform:none}
+
+    /* small screens adjustments */
+    @media (max-width:880px){
+      .app-card{flex-direction:row;gap:12px;padding:14px}
+      .install-col{align-items:flex-end}
+    }
+    @media (max-width:560px){
+      .app-card{flex-direction:column;align-items:flex-start;padding:14px;gap:12px}
+      .install-col{width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center}
+      .install-btn{width:48%}
+    }
   </style>
 </head>
 <body>
-  <div class="page" id="page">
+  <div class="wrap" id="wrap">
 
-    <!-- HEADER / APP ROW -->
-    <header class="app-header reveal">
+    <!-- APP CARD -->
+    <div class="app-card reveal" id="appCard">
       <div class="app-icon" aria-hidden="true">
         <img src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/logo.png" alt="BondhuGo logo">
       </div>
 
-      <div class="meta" style="min-width:0">
+      <div class="meta" role="region" aria-label="App information">
         <div class="app-title">BondhuGo</div>
         <div class="app-sub">BondhuGo Team · Social</div>
 
-        <div class="rating-row" aria-hidden="true">
-          <div class="stars">★ 4.7</div>
-          <div style="color:var(--muted);font-size:0.9rem">· 2,4K reviews</div>
+        <div class="rating">
+          <div class="stars">★ 4.8</div>
+          <div class="micro">· 500+ installs · 56 MB</div>
         </div>
 
-        <div class="micro">
-          <div>Free</div>
-          <div>· 5 MB</div>
-          <div>· 10K+ installs</div>
+        <div class="meta-row">
+          <div class="badge-pill">Free</div>
+          <div class="badge-pill" style="background:rgba(11,105,255,0.06);color:var(--accent)">Beta</div>
         </div>
       </div>
 
-      <div class="install-col">
-        <button class="install-btn" id="installBtn">Install</button>
-        <a href="https://indusapp.store/pu5du5h7" target="_blank" style="text-decoration:none">
-          <img src="https://docstore.indusappstore.com/public/external/developerdashboard-static/badge-black-background-english.png"
-               alt="Indus badge" style="height:36px;border-radius:8px;margin-top:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08)">
-        </a>
+      <div class="install-col" role="region" aria-label="Install">
+        <button id="installBtn" class="install-btn">Install</button>
+        <div class="install-small">Secure • Fast</div>
       </div>
-    </header>
+    </div>
 
     <!-- CAROUSEL -->
-    <div class="carousel-wrap reveal" id="screensWrap">
+    <div class="carousel-wrap reveal" id="carouselWrap">
       <div class="carousel" id="carousel" role="list">
         <img src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/screen1.png" alt="Screen 1">
         <img src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/screen2.png" alt="Screen 2">
@@ -213,84 +220,88 @@
         <p>BondhuGo helps you find, share, and belong — connect with friends and communities that share your passions. Lightweight, private-by-design, and built for people-first conversations.</p>
       </section>
 
-      <section class="card reveal">
+      <section class="card reveal" id="whatsnew">
         <h2>What's new</h2>
-        <p>• Performance improvements and bug fixes.<br>• Faster feed loading and improved search.</p>
+        <p>• Beta launch: performance improvements, faster feed loading, improved search and bug fixes.</p>
       </section>
 
-      <section class="card reveal">
+      <section class="card reveal" id="safety">
         <h2>Data safety</h2>
         <details>
           <summary>Data collected</summary>
-          <p>Profile info, posts and usage data (for crash and performance reporting) — stored securely on Google Cloud Firestore.</p>
+          <p>Profile information and posts are stored on Google Cloud Firestore. On-device search history is private to the device.</p>
         </details>
         <details>
           <summary>Data shared</summary>
-          <p>We do not sell user data. Google Sign-In provides authentication; we only use that info to create your account.</p>
+          <p>We do not sell user data. Google Sign-In is used only for authentication; we don't share sign-in data externally.</p>
         </details>
       </section>
 
-      <section class="card reveal">
+      <section class="card reveal" id="contact">
         <h2>Contact developer</h2>
         <p>Email: <a href="mailto:bondhugo.in@gmail.com">bondhugo.in@gmail.com</a></p>
-        <p style="margin-top:6px">Privacy Policy: <a href="https://realshibsankarsarkar.github.io/bondhugo-privacy-policy/" target="_blank">View Policy</a></p>
+        <p style="margin-top:8px">Privacy Policy: <a href="https://realshibsankarsarkar.github.io/bondhugo-privacy-policy/" target="_blank">View Policy</a></p>
 
-        <div class="badge-qr" style="margin-top:12px">
+        <div class="badge-qr" style="margin-top:12px;">
           <a href="https://indusapp.store/pu5du5h7" target="_blank" aria-label="Indus Appstore">
-            <img class="badge" src="https://docstore.indusappstore.com/public/external/developerdashboard-static/badge-black-background-english.png" alt="Indus Appstore badge">
+            <img class="badge" src="https://docstore.indusappstore.com/public/external/developerdashboard-static/badge-black-background-english.png" alt="Indus Appstore">
           </a>
 
           <a href="https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk" target="_blank" aria-label="Download APK">
-            <img class="qr" src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/qr.png" alt="Download QR code">
+            <img class="qr" src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/qr.png" alt="Download QR">
           </a>
         </div>
       </section>
     </div>
 
-    <footer class="reveal" style="margin-top:16px">
+    <footer class="reveal" style="margin-top:18px">
       © BondhuGo — All rights reserved. Version: Beta
-      <div style="margin-top:10px">
-        <img src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/download-apk-badge.png" alt="Download APK" style="height:36px;border-radius:6px;box-shadow:var(--shadow-sm)">
-      </div>
+      <div style="margin-top:10px"><img src="https://raw.githubusercontent.com/RealShibSankarSarkar/bondhugo/main/download-apk-badge.png" alt="Download APK" style="height:36px;border-radius:6px;box-shadow:var(--shadow-sm)"></div>
     </footer>
   </div>
 
   <script>
-    // Simple reveal on scroll
+    // --- reveal on scroll (IntersectionObserver) ---
     (function(){
-      const reveals = document.querySelectorAll('.reveal');
+      const items = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting) e.target.classList.add('visible');
         });
       }, {threshold:0.12});
-      reveals.forEach(r=>io.observe(r));
+      items.forEach(i=>io.observe(i));
     })();
 
-    // Install button action (download APK)
+    // --- Install button opens direct APK (GitHub release) ---
     document.getElementById('installBtn').addEventListener('click', ()=>{
-      window.open('https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk','_blank');
+      window.open('https://github.com/RealShibSankarSarkar/bondhugo/releases/download/v1.0.0/app-release.apk', '_blank');
     });
 
-    // Optional: make carousel scroll nicer with small snap to center on drag end
+    // --- Smooth carousel drag (pointer events) ---
     (function(){
       const carousel = document.getElementById('carousel');
       if(!carousel) return;
-      let isDown=false,startX,scrollLeft;
+      let active = false, startX, scrollLeft;
       carousel.addEventListener('pointerdown', (e)=>{
-        isDown=true; carousel.setPointerCapture(e.pointerId);
+        active = true; carousel.setPointerCapture(e.pointerId);
         startX = e.clientX; scrollLeft = carousel.scrollLeft;
       });
       carousel.addEventListener('pointermove', (e)=>{
-        if(!isDown) return;
-        const x = e.clientX;
-        const walk = (startX - x);
-        carousel.scrollLeft = scrollLeft + walk;
+        if(!active) return;
+        const dx = startX - e.clientX;
+        carousel.scrollLeft = scrollLeft + dx;
       });
       ['pointerup','pointercancel','pointerleave'].forEach(ev=>{
-        carousel.addEventListener(ev, (e)=>{ isDown=false; try{carousel.releasePointerCapture(e.pointerId)}catch(_){}} );
+        carousel.addEventListener(ev, (e)=>{ active=false; try{carousel.releasePointerCapture(e.pointerId)}catch(_){} });
       });
     })();
+
+    // --- Accessibility: keyboard nav to install button ---
+    document.addEventListener('keyup', (e)=>{
+      if(e.key === 'Enter' && document.activeElement.id === 'installBtn') {
+        document.getElementById('installBtn').click();
+      }
+    });
   </script>
 </body>
 </html>
